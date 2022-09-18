@@ -1,7 +1,7 @@
-package io.github.narutopig.game;
+package io.github.narutopig.hexagon;
 
-import io.github.narutopig.game.entity.Entity;
-import io.github.narutopig.game.entity.Sprite;
+import io.github.narutopig.hexagon.entity.Entity;
+import io.github.narutopig.hexagon.entity.Sprite;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

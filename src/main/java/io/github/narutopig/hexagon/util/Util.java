@@ -1,6 +1,6 @@
-package io.github.narutopig.game.util;
+package io.github.narutopig.hexagon.util;
 
-import io.github.narutopig.game.entity.Entity;
+import io.github.narutopig.hexagon.entity.Entity;
 
 import java.util.List;
 

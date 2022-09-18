@@ -1,4 +1,4 @@
-package io.github.narutopig.game;
+package io.github.narutopig.hexagon;
 
 public class Note {
     // in frames, assuming 60 fps

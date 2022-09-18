@@ -1,7 +1,7 @@
-package io.github.narutopig.game.entity;
+package io.github.narutopig.hexagon.entity;
 
-import io.github.narutopig.game.GamePanel;
-import io.github.narutopig.game.util.KeyHandler;
+import io.github.narutopig.hexagon.GamePanel;
+import io.github.narutopig.hexagon.util.KeyHandler;
 
 import java.awt.*;
 import java.util.ArrayList;

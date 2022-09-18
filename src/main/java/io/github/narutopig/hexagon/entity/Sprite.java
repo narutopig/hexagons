@@ -1,4 +1,4 @@
-package io.github.narutopig.game.entity;
+package io.github.narutopig.hexagon.entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
