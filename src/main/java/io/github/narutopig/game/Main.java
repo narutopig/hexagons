@@ -23,13 +23,13 @@ public class Main {
 
     static {
         try {
-            hexagonImage = readImage("/hexagon.png");
-            hexa = readImage("/hexagona.png");
-            hexs = readImage("/hexagons.png");
-            hexd = readImage("/hexagond.png");
-            hexj = readImage("/hexagonj.png");
-            hexk = readImage("/hexagonk.png");
-            hexl = readImage("/hexagonl.png");
+            hexagonImage = readImage("/sprites/hexagon.png");
+            hexa = readImage("/sprites/hexagona.png");
+            hexs = readImage("/sprites/hexagons.png");
+            hexd = readImage("/sprites/hexagond.png");
+            hexj = readImage("/sprites/hexagonj.png");
+            hexk = readImage("/sprites/hexagonk.png");
+            hexl = readImage("/sprites/hexagonl.png");
         } catch (IOException e) {
             e.printStackTrace();
         }

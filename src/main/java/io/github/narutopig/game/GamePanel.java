@@ -104,7 +104,6 @@ public class GamePanel extends JPanel implements Runnable {
                     if (entity.tag.startsWith("note0")) {
                         misses++;
                         combo = 0;
-                        System.out.println(entity.position);
                     }
 
                     entities.remove(entity);
@@ -140,13 +139,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         drawStringTopLeft(g2, "Combo: " + combo + "\nScore: " + score + "\nMisses: " + misses, 0, 0);
 
-        drawStringTopLeft(g2, "A", 950, 335);
-        drawStringTopLeft(g2, "S", 760, 90);
-        drawStringTopLeft(g2, "D", 460, 90);
-        drawStringTopLeft(g2, "J", 310, 350);
-        drawStringTopLeft(g2, "K", 460, 620);
-        drawStringTopLeft(g2, "L", 760, 620);
-
         for (Entity e : entities) {
             e.paint(g2);
         }
@@ -157,7 +149,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void start() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         Clip clip = AudioSystem.getClip();
 
-        AudioInputStream ais = AudioSystem.getAudioInputStream(GamePanel.class.getResourceAsStream("/Untitled.wav"));
+        AudioInputStream ais = AudioSystem.getAudioInputStream(GamePanel.class.getResourceAsStream("/audio/Untitled.wav"));
         clip.open(ais);
 
         clip.setFramePosition(0);
@@ -173,7 +165,7 @@ public class GamePanel extends JPanel implements Runnable {
         entities.add(e);
     }
 
-    public static void drawStringTopLeft(Graphics2D g, String s, int x, int y) {
+    public static void drawStringTopLeft(Graphics g, String s, int x, int y) {
         FontMetrics fm = g.getFontMetrics(g.getFont());
         int yOffset = fm.getAscent();
         g.drawString(s, x, y + yOffset);
