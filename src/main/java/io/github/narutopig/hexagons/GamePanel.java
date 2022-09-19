@@ -100,7 +100,7 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i = 0; i < entities.size(); i++) {
             Entity entity = entities.get(i);
             if (entity.tag.startsWith("note")) {
-                if (entity.getCenter().distance(new Vector(width / 2.0, height / 2.0)) >= 300) {
+                if (entity.getCenter().distance(new Vector(width / 2.0, height / 2.0)) >= 320) {
                     if (entity.tag.startsWith("note0")) {
                         misses++;
                         combo = 0;
@@ -119,7 +119,8 @@ public class GamePanel extends JPanel implements Runnable {
                 if (diff <= 15) {
                     String tag = Objects.requireNonNull(Util.getNoteEntity(entities, noteIndex, i)).tag;
                     if (tag.charAt(4) == '1') continue;
-                    Objects.requireNonNull(Util.getNoteEntity(entities, noteIndex, i)).tag = tag.substring(0, 4) + "1" + tag.charAt(5);
+                    Entity noteEntity = Util.getNoteEntity(entities, noteIndex, i);
+                    Objects.requireNonNull(noteEntity).tag = tag.substring(0, 4) + "1" + tag.charAt(5);
                     combo++;
                     score += (4 - diff / 5) * 100;
                 }
