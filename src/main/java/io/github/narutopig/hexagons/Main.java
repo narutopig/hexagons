@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class Main {
@@ -71,7 +72,7 @@ public class Main {
     }
 
     public static BufferedImage readImage(String path) throws IOException {
-        return ImageIO.read(Main.class.getResourceAsStream(path));
+        return ImageIO.read(Objects.requireNonNull(Main.class.getResourceAsStream(path)));
     }
 
     public static Point getPositionCentered(Sprite sprite, int x, int y) {
@@ -115,7 +116,7 @@ public class Main {
         new Entity(gp, gp.keyHandler, new Sprite(blueImage), centeredSmall.x, centeredSmall.y, 0, 0);
 
         // hit areas
-        new Entity(gp, gp.keyHandler, new Sprite(hita), 910, 335, 0, 0);
+        new Entity(gp, gp.keyHandler, new Sprite(hita), 930, 335, 0, 0);
         new Entity(gp, gp.keyHandler, new Sprite(hits), 760, 75, 0, 0);
         new Entity(gp, gp.keyHandler, new Sprite(hitd), 460, 75, 0, 0);
         new Entity(gp, gp.keyHandler, new Sprite(hitj), 310, 335, 0, 0);

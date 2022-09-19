@@ -132,7 +132,10 @@ public class GamePanel extends JPanel implements Runnable {
                         pogTimer = 120;
                     }
 
-                    int hitRating = (4 - diff / 5) * 100;
+                    int hitRating = (4 - diff / 10) * 100;
+
+                    if (hitRating > 300) hitRating = 300;
+
                     score += hitRating;
 
                     if (hitRating == 100) {
