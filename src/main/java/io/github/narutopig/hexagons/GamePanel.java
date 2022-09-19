@@ -1,10 +1,10 @@
-package io.github.narutopig.hexagon;
+package io.github.narutopig.hexagons;
 
-import io.github.narutopig.hexagon.entity.Entity;
-import io.github.narutopig.hexagon.entity.Sprite;
-import io.github.narutopig.hexagon.entity.Vector;
-import io.github.narutopig.hexagon.util.KeyHandler;
-import io.github.narutopig.hexagon.util.Util;
+import io.github.narutopig.hexagons.entity.Entity;
+import io.github.narutopig.hexagons.entity.Sprite;
+import io.github.narutopig.hexagons.entity.Vector;
+import io.github.narutopig.hexagons.util.KeyHandler;
+import io.github.narutopig.hexagons.util.Util;
 
 import javax.sound.sampled.*;
 import javax.swing.*;

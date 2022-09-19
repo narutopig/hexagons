@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.narutopig</groupId>
-    <artifactId>game</artifactId>
+    <artifactId>hexagons</artifactId>
     <version>1.0.0</version>
 
     <properties>

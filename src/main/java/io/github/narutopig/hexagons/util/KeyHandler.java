@@ -1,4 +1,4 @@
-package io.github.narutopig.hexagon.util;
+package io.github.narutopig.hexagons.util;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
