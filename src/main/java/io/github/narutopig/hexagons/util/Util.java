@@ -5,6 +5,14 @@ import io.github.narutopig.hexagons.entity.Entity;
 import java.util.List;
 
 public class Util {
+    public static Entity getEntityByTag(List<Entity> entities, String tag) {
+        for (Entity e : entities) {
+            if (e.tag.equals(tag)) return e;
+        }
+
+        return null;
+    }
+
     public static Entity getNoteEntity(List<Entity> entities, int index, int col) {
         int i = 0;
         Entity first = null;

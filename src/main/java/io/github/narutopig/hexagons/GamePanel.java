@@ -9,7 +9,9 @@ import io.github.narutopig.hexagons.util.Util;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +23,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final KeyHandler keyHandler = new KeyHandler();
     public final List<Entity> entities = new ArrayList<>();
     final double sixtyDegrees = -60;
+    int pogTimer = 0;
+    int hitTimer = 0;
 
     Thread gameThread;
 
@@ -61,13 +65,11 @@ public class GamePanel extends JPanel implements Runnable {
         double delta = 0;
         long lastTime = System.nanoTime();
         long currTime;
-        long timer = 0;
 
         while (gameThread != null) {
             currTime = System.nanoTime();
 
             delta += (currTime - lastTime) / drawInterval;
-            timer += currTime - lastTime;
             lastTime = currTime;
 
             if (delta >= 1) {
@@ -104,6 +106,8 @@ public class GamePanel extends JPanel implements Runnable {
                     if (entity.tag.startsWith("note0")) {
                         misses++;
                         combo = 0;
+                        new Entity(this, keyHandler, new Sprite(Main.miss), width / 2.0 - 128, 0, 0, 0, "hit");
+                        hitTimer = 15;
                     }
 
                     entities.remove(entity);
@@ -116,13 +120,30 @@ public class GamePanel extends JPanel implements Runnable {
                 int noteIndex = Util.nextNote(timestamp, i, frames);
 
                 int diff = Math.abs(frames - timestamp.get(i).get(noteIndex));
-                if (diff <= 15) {
+                if (diff <= 30) {
                     String tag = Objects.requireNonNull(Util.getNoteEntity(entities, noteIndex, i)).tag;
                     if (tag.charAt(4) == '1') continue;
                     Entity noteEntity = Util.getNoteEntity(entities, noteIndex, i);
                     Objects.requireNonNull(noteEntity).tag = tag.substring(0, 4) + "1" + tag.charAt(5);
                     combo++;
-                    score += (4 - diff / 5) * 100;
+
+                    if (combo == 10) {
+                        new Entity(this, keyHandler, new Sprite(Main.pog), 0, height / 2.0, 0, 0, "pog");
+                        pogTimer = 120;
+                    }
+
+                    int hitRating = (4 - diff / 5) * 100;
+                    score += hitRating;
+
+                    if (hitRating == 100) {
+                        new Entity(this, keyHandler, new Sprite(Main.hit100), width / 2.0 - 128, 0, 0, 0, "hit");
+                    } else if (hitRating == 200) {
+                        new Entity(this, keyHandler, new Sprite(Main.hit200), width / 2.0 - 128, 0, 0, 0, "hit");
+                    } else if (hitRating == 300) {
+                        new Entity(this, keyHandler, new Sprite(Main.hit300), width / 2.0 - 128, 0, 0, 0, "hit");
+                    }
+
+                    hitTimer = 30;
                 }
             }
         }
@@ -130,6 +151,11 @@ public class GamePanel extends JPanel implements Runnable {
         for (Entity e : entities) {
             e.update(curr - lastUpdate);
         }
+
+        if (hitTimer > 0) hitTimer--;
+        else entities.remove(Util.getEntityByTag(entities, "hit"));
+        if (pogTimer > 0) pogTimer--;
+        else entities.remove(Util.getEntityByTag(entities, "pog"));
         lastUpdate = curr;
     }
 
@@ -150,7 +176,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void start() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
         Clip clip = AudioSystem.getClip();
 
-        AudioInputStream ais = AudioSystem.getAudioInputStream(GamePanel.class.getResourceAsStream("/audio/Untitled.wav"));
+        InputStream is = GamePanel.class.getResourceAsStream("/audio/Untitled.wav");
+        InputStream buf = new BufferedInputStream(is);
+        AudioInputStream ais = AudioSystem.getAudioInputStream(buf);
         clip.open(ais);
 
         clip.setFramePosition(0);

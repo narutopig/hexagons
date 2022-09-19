@@ -20,6 +20,12 @@ public class Main {
     static BufferedImage hexj;
     static BufferedImage hexk;
     static BufferedImage hexl;
+    static BufferedImage blueImage;
+    static BufferedImage hit100;
+    static BufferedImage hit200;
+    static BufferedImage hit300;
+    static BufferedImage miss;
+    static BufferedImage pog;
 
     static {
         try {
@@ -30,6 +36,12 @@ public class Main {
             hexj = readImage("/sprites/hexagonj.png");
             hexk = readImage("/sprites/hexagonk.png");
             hexl = readImage("/sprites/hexagonl.png");
+            hit100 = readImage("/sprites/100.png");
+            hit200 = readImage("/sprites/200.png");
+            hit300 = readImage("/sprites/300.png");
+            miss = readImage("/sprites/miss.png");
+            pog = readImage("/sprites/pog.png");
+            blueImage = getScaledImage(readImage("/sprites/bluehexagon.png"), 0.25);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,6 +49,7 @@ public class Main {
 
     static BufferedImage smallImage = getScaledImage(hexagonImage, 0.25);
     static BufferedImage largeImage = getScaledImage(hexagonImage, 3);
+
     static BufferedImage hita = getScaledImage(hexa, 0.25);
     static BufferedImage hits = getScaledImage(hexs, 0.25);
     static BufferedImage hitd = getScaledImage(hexd, 0.25);
@@ -99,7 +112,7 @@ public class Main {
         Point centered = getPositionCentered(largeHexagon, w / 2, h / 2);
 
         new Entity(gp, gp.keyHandler, largeHexagon, centered.x, centered.y, 0, 0);
-        new Entity(gp, gp.keyHandler, smallHexagon, centeredSmall.x, centeredSmall.y, 0, 0);
+        new Entity(gp, gp.keyHandler, new Sprite(blueImage), centeredSmall.x, centeredSmall.y, 0, 0);
 
         // hit areas
         new Entity(gp, gp.keyHandler, new Sprite(hita), 910, 335, 0, 0);
